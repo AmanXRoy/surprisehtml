@@ -4,7 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surprise</title>
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #010400;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+.contentWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainTitle {
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+}
+
+.contentDiv {
+  padding: 12px;
+}
+
+.opencta {
+  border: none;
+  outline: none;
+  background-color: #fb6f92;
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  border-radius: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: none;
+}
+
+.opencta.animateRipple {
+  animation: ripple 0.5s infinite;
+}
+
+
+.surpriseMsg .msg{
+    font-size: 60px;
+    font-weight: 700;
+    display: inline-block;
+    font-size: 60px;
+    animation: growText 1s linear;
+    transition: font-size 1s linear;
+}
+
+.hidden{
+    display: none;
+}
+@keyframes ripple {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: 0 0 0 6px #fff;
+  }
+}
+
+
+@keyframes growText {
+    25%{
+        font-size: 15px;
+    }
+    50%{
+        font-size: 30px;
+    }
+    75%{
+        font-size: 45px;
+    }
+    100%{
+        font-size: 60px;
+    }
+}
+
+    </style>
   </head>
   <body>
     <div class="contentWrapper">
@@ -27,6 +120,20 @@
         <span class="msg">U</span>
       </div>
     </div>
-    <script src="./assets/js/script.js"></script>
+    <script>
+      let ctaButton = document.querySelector(".opencta");
+      let introDiv = document.querySelector(".introQuestion");
+      let msgDiv = document.querySelector(".surpriseMsg");
+      window.addEventListener("pageshow", function () {
+        ctaButton.classList.add("animateRipple");
+      });
+
+      ctaButton.addEventListener("click", function () {
+        if (ctaButton.classList.contains("animateRipple"))
+          ctaButton.classList.remove("animateRipple");
+        introDiv.remove();
+        msgDiv.classList.remove("hidden");
+      });
+    </script>
   </body>
 </html>
